@@ -15,7 +15,7 @@
                     {{ session('success') }}
                 </div>
             @endif  
-            <a href="{{ route('ahli.kriteria.default') }}" class="btn btn-primary mb-3"><i class="fas fa-plus mr-1"></i>Tambah Kriteria</a>
+            <a href="{{ route('ahli.create') }}" class="btn btn-primary mb-3"><i class="fas fa-plus mr-1"></i>Tambah Kriteria</a>
             
             <div class="card">
                 <div class="card-body">

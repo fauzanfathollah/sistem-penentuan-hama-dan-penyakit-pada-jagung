@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\GejalaController as AdminGejalaController;
 use App\Http\Controllers\Admin\GejalaPilihanController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\KriteriaHamaController;
 
 // Route::get('/', function () {
 //     return redirect()->route('login');
@@ -65,11 +66,22 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('kriteria', KriteriaController::class)->names([
             'index' => 'ahli.kriteria.index',
-            'store' => 'ahli.kriteria.store',
+            'create' => 'ahli.create',
+            'store' => 'kriteria.store',
             'edit' => 'kriteria.edit',
             'update' => 'ahli.kriteria.update',
             'destroy' => 'ahli.kriteria.destroy'
         ]);
+
+        //kriteriahama
+        Route::get('kriteriaHama', [KriteriaHamaController::class, 'index'])->name('kriteria.index');
+        Route::get('kriteriaHama/create', [KriteriaHamaController::class, 'create'])->name('kriteria.create');
+        Route::post('kriteriaHama/store', [KriteriaHamaController::class, 'store'])->name('kriteria.store');
+        Route::get('kriteriaHama/edit/{id}', [KriteriaHamaController::class, 'edit'])->name('kriteria.edit');
+        Route::put('kriteriaHama/update/{id}', [KriteriaHamaController::class, 'update'])->name('kriteria.update');
+        Route::post('kriteriaHama/destroy/{id}', [KriteriaHamaController::class, 'destroy'])->name('kriteria.destroy');
+
+
         Route::get('/kriteria/default', [KriteriaController::class, 'insertDefaultKriteria'])->name('ahli.kriteria.default');
 
         Route::resource('gejala', AhliGejalaController::class)->names([

@@ -25,18 +25,23 @@ class PenyakitController extends Controller
             'kode' => 'required|string|max:10|unique:penyakits,kode',
             'nama' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'bobot' => 'required|numeric|between:0,1',
+            'bobot' => 'required|numeric',
         ]);
 
-        Penyakit::create([
-            'kode' => $request->kode,
-            'nama' => $request->nama,
-            'deskripsi' => $request->deskripsi,
-            'bobot' => $request->bobot,
-        ]);
+        try {
+            Penyakit::create([
+                'kode' => $request->kode,
+                'nama' => $request->nama,
+                'deskripsi' => $request->deskripsi,
+                'bobot' => $request->bobot,
+            ]);
 
-        return redirect()->route('ahli.penyakit.index')->with('success', 'Penyakit berhasil ditambahkan');
+            return redirect()->route('ahli.penyakit.index')->with('success', 'Penyakit berhasil ditambahkan');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->with('error', 'Penyakit gagal ditambahkan: ' . $e->getMessage());
+        }
     }
+
 
     public function edit(Penyakit $penyakit)
     {
@@ -49,7 +54,7 @@ class PenyakitController extends Controller
             'kode' => 'required|string|max:10|unique:penyakits,kode,' . $penyakit->id,
             'nama' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'bobot' => 'required|numeric|between:0,1',
+            'bobot' => 'required|numeric',
         ]);
 
         $penyakit->update([

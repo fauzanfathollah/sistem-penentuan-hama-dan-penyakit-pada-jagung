@@ -1,12 +1,12 @@
 @extends('layouts.Ahli.app')
 
-@section('title', 'Tambah Kriteria')
+@section('title', 'Edit Kriteria')
 
 @section('Ahli_main')
-<div class="main-content">
+    <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>create Kriteria</h1>
+                <h1>Edit Kriteria</h1>
             </div>
 
             <div class="row mt-4">
@@ -17,16 +17,18 @@
                                 <div class="alert alert-success">{{ session('success') }}</div>
                             @endif
 
-                            <form action="{{route('kriteria.store')}}" method="POST">
+                            <form action="{{ route('kriteria.update', $kriteria->id) }}" method="POST">
                                 @csrf
+                                @method('PUT')
+
                                 <div class="form-group">
                                     <label for="nama">Nama Kriteria</label>
-                                    <input type="text" name="nama" class="form-control"  required>
+                                    <input type="text" name="nama" class="form-control" value="{{ old('nama', $kriteria->nama) }}" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="bobot">Bobot</label>
-                                    <input type="number" step="0.01" name="bobot" class="form-control"  required>
+                                    <input type="number" step="0.01" name="bobot" class="form-control" value="{{ old('bobot', $kriteria->bobot) }}" required>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Simpan Perubahan</button>

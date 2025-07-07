@@ -22,13 +22,38 @@
                     <li>
                         <a class="nav-link" href="{{ route('ahli.gejala.index') }}">Manajemen Gejala</a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="{{ route('ahli.penyakit.index') }}">Manajemen Penyakit</a>
-                    </li>
+
                     <li>
                         <a class="nav-link" href="{{ route('ahli.perhitungan_ahp.index') }}">Perhitungan AHP</a>
                     </li>
 
+                </ul>
+            </li>
+
+
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Manajemen
+                        Kriteria</span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="nav-link" href="{{ route('ahli.kriteria.index') }}">Penyakit</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('kriteria.index') }}">Hama</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Manajemen
+                        Alternatif</span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="nav-link" href="{{ route('ahli.penyakit.index') }}">Alternatif Penyakit</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href=""> ALternatif Hama</a>
+                    </li>
                 </ul>
             </li>
         </ul>

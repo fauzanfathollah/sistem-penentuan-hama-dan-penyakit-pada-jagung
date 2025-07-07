@@ -14,6 +14,11 @@ class KriteriaController extends Controller
         return view('pages.ahli.kriteria.index', compact('kriterias'));
     }
 
+    public function create()
+    {
+        return view('pages.Ahli.kriteria.create');
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -22,7 +27,7 @@ class KriteriaController extends Controller
         ]);
 
         Kriteria::create($request->all());
-        return redirect()->back()->with('success', 'Kriteria berhasil ditambahkan.');
+        return redirect()->route('ahli.perhitungan_ahp.index')->with('success', 'Kriteria berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -42,8 +47,7 @@ class KriteriaController extends Controller
         $kriteria = Kriteria::findOrFail($id);
         $kriteria->update($request->all());
 
-    return redirect()->route('ahli.kriteria.index')->with('success', 'Kriteria berhasil diperbarui.');
-
+        return redirect()->route('ahli.kriteria.index')->with('success', 'Kriteria berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -53,21 +57,4 @@ class KriteriaController extends Controller
 
         return redirect()->back()->with('success', 'Kriteria berhasil dihapus.');
     }
-
-    public function insertDefaultKriteria()
-{
-    $kriterias = [
-        ['kode' => 'K1', 'nama' => 'Warna Daun', 'bobot' => 0.25],
-        ['kode' => 'K2', 'nama' => 'Bentuk Bercak', 'bobot' => 0.25],
-        ['kode' => 'K3', 'nama' => 'Bagian Terinfeksi', 'bobot' => 0.25],
-        ['kode' => 'K4', 'nama' => 'Kondisi Lingkungan', 'bobot' => 0.25],
-    ];
-
-    foreach ($kriterias as $kriteria) {
-        Kriteria::create($kriteria);
-    }
-
-    return redirect()->route('ahli.kriteria.index')->with('success', 'Data kriteria default berhasil ditambahkan.');
-}
-
 }
